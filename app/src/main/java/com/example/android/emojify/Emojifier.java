@@ -13,8 +13,9 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 
+import timber.log.Timber;
+
 public class Emojifier {
-    final private static String TAG = Emojifier.class.getSimpleName();
 
     private static final float EMOJI_SCALE_FACTOR = .9f;
     private static final double SMILING_PROB_THRESHOLD = .15;
@@ -65,7 +66,7 @@ public class Emojifier {
     }
 
     public static void getClassifications(Face face) {
-        Log.d(TAG, "Left eye open: " + face.getIsLeftEyeOpenProbability() + "\n" +
+        Timber.d( "Left eye open: " + face.getIsLeftEyeOpenProbability() + "\n" +
                         "Right eye open: " + face.getIsRightEyeOpenProbability() + "\n" +
                         "Person is smiling: " + face.getIsSmilingProbability());
     }
@@ -74,6 +75,10 @@ public class Emojifier {
         boolean smiling = face.getIsSmilingProbability() > SMILING_PROB_THRESHOLD;
         boolean leftEyeClosed = face.getIsLeftEyeOpenProbability() < EYE_OPEN_PROB_THRESHOLD;
         boolean rightEyeClosed = face.getIsRightEyeOpenProbability() < EYE_OPEN_PROB_THRESHOLD;
+
+        Timber.d("whichEmoji: smilingProb = " + face.getIsSmilingProbability());
+        Timber.d("whichEmoji: leftEyeOpenProb = " + face.getIsLeftEyeOpenProbability());
+        Timber.d("whichEmoji: rightEyeProb = " + face.getIsRightEyeOpenProbability());
 
         Emoji emoji;
         if(smiling) {
@@ -104,6 +109,9 @@ public class Emojifier {
                 emoji = Emoji.FROWN;
             }
         }
+
+        Timber.d("whichEmoji: " + emoji.name());
+
         return emoji;
     }
 
