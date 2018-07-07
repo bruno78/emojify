@@ -1,15 +1,12 @@
 # Emojify
 
+<p align="center"> <img src="https://cdn.rawgit.com/bruno78/emojify/b9345908/app/src/main/res/drawable/closed_smile.png" width="200" alt="icon image" > </p>
+
 This application uses [Google Mobile Vision](https://developers.google.com/vision/) for 
 face recognition and _emojify_ according with the face expression. 
 
 This recognition is based on combination of two groups: eyes and lips.
 
- 
-| o o |       |
-| - - | smile |
-| o - | frown |
-| - o |       |
 
 
 ## Pre-requisites
